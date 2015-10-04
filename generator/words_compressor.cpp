@@ -2,6 +2,12 @@
 #include <stdexcept>
 #include <algorithm>
 
+WordsCompressor::WordsCompressor(const std::vector<std::string>& dictionary) {
+    for (const auto& word : dictionary) {
+        addWord(word);
+    }
+}
+
 ull WordsCompressor::addWord(const std::string& word) {
     if (mapper_.find(word) != mapper_.end()) {
         return mapper_[word];

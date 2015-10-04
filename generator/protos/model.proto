@@ -6,7 +6,7 @@ message Destination {
 }
 
 message State {
-    repeated uint64 word = 1;
+    repeated uint64 words = 1;
 }
 message Transitions {
     required State state = 1;
@@ -16,4 +16,6 @@ message Transitions {
 message Model {
     repeated bytes words = 1;
     repeated Transitions transitions = 2;
+    required string locale = 3;
+    required uint64 order = 4;
 }

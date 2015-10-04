@@ -9,6 +9,8 @@ typedef unsigned long long ull;
 
 class WordsCompressor {
 public:
+    WordsCompressor() {};
+    explicit WordsCompressor(const std::vector<std::string>& dictionary);
     ull addWord(const std::string&);
     ull getId(const std::string&) const;
     std::string getWord(ull) const;
