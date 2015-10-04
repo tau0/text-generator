@@ -6,7 +6,7 @@
 TextGenerator::TextGenerator(std::istream& inputStream) {
     Protos::Model model;
     if (!model.ParseFromIstream(&inputStream)) {
-        throw std::runtime_error("failed to read model");
+        throw std::runtime_error("model is broken");
     }
 
     locale_ = model.locale();
@@ -97,6 +97,7 @@ void TextGenerator::generate(ull requiredNumberOfWords, std::istream& inputStrea
         outputStream << wordCompressor_.getWord(buffer.front()) << ' ';
         buffer.pop();
     }
+    outputStream << std::endl;
 }
 
 ull TextGenerator::getNextWord(const std::queue<ull>& buffer) {
