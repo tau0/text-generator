@@ -4,22 +4,35 @@
 #include <iostream>
 #include <queue>
 #include <clocale>
+#include <random>
+
+typedef unsigned long long ull;
 
 class TextGenerator {
 public:
-    explicit TextGenerator(size_t order, const char* const locale)
+    explicit TextGenerator(ull order, const char* const locale, unsigned int seed)
         : markovChainOrder_(order)
+        , modelIsReady_(false)
         , locale_(locale)
+        , mersenneRandomGenerator_(seed)
     {}
+    explicit TextGenerator(ull order, const char* const locale)
+        : TextGenerator(order, locale, std::random_device()())
+    {}
+    explicit TextGenerator(std::string& model, const char* locale);
 
+    void saveModel(std::ostream& outputStream) const;
     void fit(std::istream& inputStream = std::cin);
-    void generate();
+    void generate(ull requiredNumberOfWords, std::istream& inputStream = std::cin, std::ostream& outputStream =  std::cout);
     void showTransistions(std::ostream& outputStream = std::cout) const;
+    ull getNextWord(const std::queue<ull>& buffer);
 
 private:
-    size_t markovChainOrder_;
+    ull markovChainOrder_;
+    bool modelIsReady_;
     WordsCompressor wordCompressor_;
-    std::map<std::pair<std::queue<size_t>, size_t>, size_t> counter_;
+    std::map<std::queue<ull>, std::map<ull, ull>> counter_;
+    std::map<std::queue<ull>, ull> totals_;
     std::locale locale_;
-
+    std::mt19937_64 mersenneRandomGenerator_;
 };

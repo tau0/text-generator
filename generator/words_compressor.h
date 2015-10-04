@@ -5,12 +5,16 @@
 #include <map>
 #include <locale>
 
+typedef unsigned long long ull;
+
 class WordsCompressor {
 public:
-    size_t addWord(const std::string&);
-    std::string getWord(size_t) const;
+    ull addWord(const std::string&);
+    ull getId(const std::string&) const;
+    std::string getWord(ull) const;
+    std::vector<std::string> getDictionary() const;
     static std::string canonizeWord(const std::string& word, const std::locale& locale);
 private:
     std::vector<std::string> storage_;
-    std::map<std::string, size_t> mapper_;
+    std::map<std::string, ull> mapper_;
 };

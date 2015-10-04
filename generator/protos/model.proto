@@ -1,0 +1,19 @@
+package Protos;
+
+message Destination {
+    required uint64 nextword = 2;
+    required uint64 count = 3;
+}
+
+message State {
+    repeated uint64 word = 1;
+}
+message Transitions {
+    required State state = 1;
+    repeated Destination destinations = 2;
+}
+
+message Model {
+    repeated bytes words = 1;
+    repeated Transitions transitions = 2;
+}

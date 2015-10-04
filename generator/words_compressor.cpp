@@ -2,19 +2,26 @@
 #include <stdexcept>
 #include <algorithm>
 
-size_t WordsCompressor::addWord(const std::string& word) {
+ull WordsCompressor::addWord(const std::string& word) {
     if (mapper_.find(word) != mapper_.end()) {
         return mapper_[word];
     }
 
-    size_t id = 0;
+    ull id = 0;
     storage_.push_back(word);
     id = storage_.size() - 1;
     mapper_.insert(std::make_pair(word, id));
     return id;
 }
 
-std::string WordsCompressor::getWord(size_t id) const {
+ull WordsCompressor::getId(const std::string& word) const {
+    if (mapper_.find(word) == mapper_.end()) {
+        throw std::invalid_argument("there is no such word in the dictionary");
+    }
+    return mapper_.find(word)->second;
+}
+
+std::string WordsCompressor::getWord(ull id) const {
     if (id >= storage_.size()) {
         throw std::out_of_range("no word with this id");
     }
@@ -36,4 +43,8 @@ std::string WordsCompressor::canonizeWord(const std::string& word, const std::lo
         lowered.push_back(std::tolower(letter, locale));
     }
     return lowered;
+}
+
+std::vector<std::string> WordsCompressor::getDictionary() const {
+    return storage_;
 }
