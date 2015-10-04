@@ -122,7 +122,6 @@ ull TextGenerator::getNextWord(const std::queue<ull>& buffer) {
     throw std::logic_error("shouldn't happen. data model probably corrupted");
 }
 
-
 void TextGenerator::showTransistions(std::ostream& outputStream) const {
     for (const auto& transition : counter_) {
         for (const auto& destination : transition.second) {
