@@ -2,7 +2,7 @@
 This project shows you ways to generate text using simple Markov's chains.
 
 ## Features and limitations.
-- Process correctly different one byte encodings.
+- Processes different one byte encodings correctly.
 - Multibyte encodings aren't supported right now, because of a poor c++ support of a multibytes encodings.
 - Support saving and loading a trained model to and from a binary file in google protocol buffers format.
 
