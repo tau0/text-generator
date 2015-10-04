@@ -1,12 +1,12 @@
-# Text generator based on a Markov chains.
+# Text generator based on Markov chains.
 This project shows you ways to generate text using simple Markov chains.
 
 ## Features and limitations.
-- Processes different one byte encodings correctly.
+- Can work with different one byte encodings correctly.
 - Multibyte encodings aren't supported right now, because of a poor c++ support of multibytes encodings.
 - Support saving and loading a trained model to and from a binary file in google protocol buffers format.
 
-## Some notes about texts.
+## Texts description.
 There are some sample texts in the texts directory of this project which can be used as training sets for this text generator.
 War and peace book is in Russian and saved using CP1251 encoding. Everything else is in English (ascii). 
 
