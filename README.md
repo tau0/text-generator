@@ -1,5 +1,5 @@
-# Text generator based on a Markov's chains.
-This project shows you ways to generate text using simple Markov's chains.
+# Text generator based on a Markov chains.
+This project shows you ways to generate text using simple Markov chains.
 
 ## Features and limitations.
 - Processes different one byte encodings correctly.
